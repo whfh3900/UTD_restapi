@@ -1,0 +1,8 @@
+- 접속후 Content에 입력
+{"uid":"UID001", "tran_dt":"2020-10-12 13:42:00", "code": 1, "md_type": 2, "wd_code": 1, "net_code": 0, "tran_amt": 10000}
+
+- httpie로 입력
+http POST http://10.177.234.35:8080/ uid=UID001 tran_dt="2020-10-12 13:42:00" code=2 md_type=2 wd_code=1 net_code=0 tran_amt=10000
+
+-curl로 입력
+curl -X POST http://10.177.234.35:8080/ -H "Content-Type: application/json" -d "{""uid"":""UID001"", ""tran_dt"":""2020-10-12 13:42:00"", ""code"":2, ""md_type"":2, ""wd_code"":1, ""net_code"":0, ""tran_amt"":10000}"

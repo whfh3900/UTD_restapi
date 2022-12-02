@@ -30,7 +30,7 @@ class TransactionViewAPI(APIView):
                                      5: CD/ATM 이체입금, 6: CD/ATM 입금, 7: CD/ATM 납부, 8: 오픈뱅킹 조회(사용X),\
                                      9: 오픈뱅킹 출금, 10: 오픈뱅킹 입금, 11: 지로공동망 자동이체, 12: 지로공동망 납부자자동이체 이체출금,\
                                      13: 지로공동망 납부자자동이체 이체입금, 14: CMS공동망 자동이체,}",
-                    "md_type": "매체구분 {1: PC뱅킹, 2: 인터넷뱅킹, 3: 전화 4: 휴대전화, 5: 건별이체 6: 기타, 7: 대량이체}",
+                    "md_type": "매체구분 {1: PC뱅킹, 2: 인터넷뱅킹, 3: 전화, 4: 휴대전화, 5: 건별이체, 6: 기타, 7: 대량이체}",
                     "wd_code": "입출구분 {0: 입금, 1: 출금}",
                     "net_code": "망구분 {0: 전자금융공동망, 1: CD/ATM, 2: 오픈뱅킹, 3: 납부자 자동이체, 4: CM 공동망}",
                     "tran_amt": "거래금액"}
@@ -84,9 +84,9 @@ class TransactionViewAPI(APIView):
 
             get_uid = UserInfo.objects.filter(uid=data['uid']).values()[0]
             if get_uid[result] != 0:
-                return Response({"result": result, "특이거래 여부": "정상"}, status=status.HTTP_201_CREATED)  # client에게 JSON response 전달
+                return Response({"tran_result": result, "adn_result": "정상"}, status=status.HTTP_201_CREATED)  # client에게 JSON response 전달
             else:
-                return Response({"result": result, "특이거래 여부": "이상", "data": get_uid}, status=status.HTTP_201_CREATED)  # client에게 JSON response 전달
+                return Response({"tran_result": result, "adn_result": "이상", "data": get_uid}, status=status.HTTP_201_CREATED)  # client에게 JSON response 전달
 
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
